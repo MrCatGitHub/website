@@ -7,11 +7,19 @@ import { extname } from 'node:path';
 const hostname = '192.168.178.30';
 const port = 3000;
 
-const server = createServer(async (req, res) => {
-    try {
-        const url = req.url === '/' ? '/index.html' : req.url;
-        const filePath = `.${url}`;
-        const ext = extname(filePath);
+    const server = createServer(async (req, res) => {
+    const url = req.url === '/' ? '/index.html' : req.url;
+
+        // Check if the requested URL is /test.html
+        if (url === '/test.html') {
+            res.statusCode = 403;
+            res.setHeader('Content-Type', 'text/plain');
+            res.end('403 Forbidden');
+            return;
+        }
+
+    const filePath = `./public${url}`;
+    const ext = extname(filePath);
 
         let contentType = 'text/html';
         if (ext === '.js') {
@@ -40,10 +48,9 @@ const server = createServer(async (req, res) => {
             res.setHeader('Content-Type', 'text/html');
             res.end(data);
         } catch (err) {
-            const data = await readFile('./500.html');
             res.statusCode = 500;
             res.setHeader('Content-Type', 'text/plain');
-            res.end(data);
+            res.end('500: Internal Server Error');
         }
     }
 });
