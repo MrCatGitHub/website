@@ -15,6 +15,10 @@ const server = createServer(async (req, res) => {
         res.setHeader('Content-Type', 'text/plain');
         res.end('423 Locked');
         return;
+    } else if (url === './modern/index.html' || './modern/204.html') {
+        res.statusCode = 503;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end('503 Service Unavailable');
     }
 
     const filePath = `.${url}`;
@@ -32,7 +36,7 @@ const server = createServer(async (req, res) => {
     } else if (ext === '.jpg') {
         contentType = 'image/jpg';
     } else if (ext === '.webp') {
-        contentType = 'image/webp'
+        contentType = 'image/webp';
     }
 
     try {
