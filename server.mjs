@@ -19,6 +19,7 @@ const server = createServer(async (req, res) => {
         res.statusCode = 503;
         res.setHeader('Content-Type', 'text/plain');
         res.end('503 Service Unavailable');
+        return;
     }
 
     const filePath = `.${url}`;
