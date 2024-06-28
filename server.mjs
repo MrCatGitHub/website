@@ -24,6 +24,8 @@ const server = createServer(async (req, res) => {
             contentType = 'image/png';
         } else if (ext === '.jpg') {
             contentType = 'image/jpg';
+        } else if (ext === '.webp') {
+            contentType = 'image/webp'
         } // Add more MIME types as needed
 
         const data = await readFile(filePath);
