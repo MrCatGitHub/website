@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "express-ip-filter": "^2.0.0"
+  }
+}

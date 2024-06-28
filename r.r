@@ -1,0 +1,2 @@
+message <-"lump"
+print(message)
