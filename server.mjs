@@ -44,7 +44,7 @@ const server = createServer(async (req, res) => {
     } catch (error) {
         try {
             res.statusCode = 404;
-            res.setHeader('Content-Type', 'text/html');
+            res.setHeader('Content-Type', 'text/plain');
             res.end('404 Not Found');
         } catch (err) {
             res.statusCode = 500;
