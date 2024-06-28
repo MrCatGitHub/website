@@ -4,7 +4,7 @@ import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { extname } from 'node:path';
 
-const hostname = '192.168.68.89';
+const hostname = '192.168.178.30';
 const port = 3000;
 
 const server = createServer(async (req, res) => {
