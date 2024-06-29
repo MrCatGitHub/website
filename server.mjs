@@ -4,8 +4,8 @@ import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { extname } from 'node:path';
 
-const hostname = '192.168.178.30';
-const port = 3000;
+const hostname = '178.39.169.190';
+const port = 80;
 
 const server = createServer(async (req, res) => {
     const url = req.url === '/' ? '/index.html' : req.url;
@@ -41,12 +41,15 @@ const server = createServer(async (req, res) => {
     }
 
     try {
+        await access(filePath, constants.F_OK);
         const data = await readFile(filePath);
 
         res.statusCode = 200;
         res.setHeader('Content-Type', contentType);
         res.end(data);
     } catch (error) {
+        if (ext === '.png' || ext === '.jpg' || ext === '.webp') {
+            const placeholderPath = './img/404.png';
         try {
             res.statusCode = 404;
             res.setHeader('Content-Type', 'text/plain');
