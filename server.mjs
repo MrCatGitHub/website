@@ -1,10 +1,11 @@
 console.log("Mr. Cat's server running on node.js");
 
 import { createServer } from 'node:http';
-import { readFile } from 'node:fs/promises';
+import { readFile, access } from 'node:fs/promises';
+import { constants } from 'node:fs';
 import { extname } from 'node:path';
 
-const hostname = '178.39.169.190';
+const hostname = '192.168.178.30';
 const port = 80;
 
 const server = createServer(async (req, res) => {
@@ -15,7 +16,7 @@ const server = createServer(async (req, res) => {
         res.setHeader('Content-Type', 'text/plain');
         res.end('423 Locked');
         return;
-    } else if (url === './modern/index.html') {
+    } else if (url === '/modern/index.html') {
         res.statusCode = 503;
         res.setHeader('Content-Type', 'text/plain');
         res.end('503 Service Unavailable');
@@ -50,17 +51,23 @@ const server = createServer(async (req, res) => {
     } catch (error) {
         if (ext === '.png' || ext === '.jpg' || ext === '.webp') {
             const placeholderPath = './img/404.png';
-        try {
+            try {
+                const placeholderData = await readFile(placeholderPath);
+                res.statusCode = 200;
+                res.setHeader('Content-Type', contentType);
+                res.end(placeholderData);
+            } catch (placeholderError) {
+                res.statusCode = 404;
+                res.setHeader('Content-Type', 'text/plain');
+                res.end('404 Not Found');
+            }
+        } else {
             res.statusCode = 404;
             res.setHeader('Content-Type', 'text/plain');
             res.end('404 Not Found');
-        } catch (err) {
-            res.statusCode = 500;
-            res.setHeader('Content-Type', 'text/plain');
-            res.end('500 Internal Server Error');
         }
     }
-};
+});
 
 server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
