@@ -60,7 +60,7 @@ const server = createServer(async (req, res) => {
             res.end('500 Internal Server Error');
         }
     }
-});
+};
 
 server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
