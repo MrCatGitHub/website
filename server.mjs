@@ -16,7 +16,7 @@ const server = createServer(async (req, res) => {
         res.setHeader('Content-Type', 'text/plain');
         res.end('423 Locked');
         return;
-    } else if (url === '/modern/index.html') {
+    } else if (url.startsWith('/modern')) {
         res.statusCode = 503;
         res.setHeader('Content-Type', 'text/plain');
         res.end('503 Service Unavailable');
