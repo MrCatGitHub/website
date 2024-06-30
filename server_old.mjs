@@ -1,4 +1,4 @@
-console.log("Mr. Cat's server running on node.js"); //credits to chatgpt 4o for being the reason that this even works
+console.log("Mr. Cat's server running on node.js");
 
 import { createServer } from 'node:http';
 import { readFile, access } from 'node:fs/promises';
@@ -26,41 +26,19 @@ const server = createServer(async (req, res) => {
     const filePath = `.${url}`;
     const ext = extname(filePath);
 
-    let contentType = '';
-    switch (ext) {
-        case '.html':
-            contentType = 'text/html';
-            break;
-        case '.js':
-            contentType = 'application/javascript';
-            break;
-        case '.css':
-            contentType = 'text/css';
-            break;
-        case '.json':
-            contentType = 'application/json';
-            break;
-        case '.png':
-            contentType = 'image/png';
-            break;
-        case '.jpg':
-        case '.jpeg':
-            contentType = 'image/jpeg';
-            break;
-        case '.gif':
-            contentType = 'image/gif';
-            break;
-        case '.webp':
-            contentType = 'image/webp';
-            break;
-        case '.svg':
-            contentType = 'image/svg+xml';
-            break;
-        default:
-            res.statusCode = 415;
-            res.setHeader('Content-Type', 'text/plain');
-            res.end('415 Unsupported Media Type');
-            return;
+    let contentType = 'text/html';
+    if (ext === '.js') {
+        contentType = 'application/javascript';
+    } else if (ext === '.css') {
+        contentType = 'text/css';
+    } else if (ext === '.json') {
+        contentType = 'application/json';
+    } else if (ext === '.png') {
+        contentType = 'image/png';
+    } else if (ext === '.jpg') {
+        contentType = 'image/jpg';
+    } else if (ext === '.webp') {
+        contentType = 'image/webp';
     }
 
     try {
@@ -71,7 +49,7 @@ const server = createServer(async (req, res) => {
         res.setHeader('Content-Type', contentType);
         res.end(data);
     } catch (error) {
-        if (ext === '.png' || ext === '.jpg' || ext === '.jpeg' || ext === '.gif' || ext === '.webp' || ext === '.svg') {
+        if (ext === '.png' || ext === '.jpg' || ext === '.webp') {
             const placeholderPath = './img/404.png';
             try {
                 const placeholderData = await readFile(placeholderPath);
