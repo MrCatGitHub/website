@@ -54,7 +54,7 @@ const server = createServer(async (req, res) => {
             try {
                 const placeholderData = await readFile(placeholderPath);
                 res.statusCode = 200;
-                res.setHeader('Content-Type', contentType);
+                res.setHeader('Content-Type', 'image/png'); // Assume placeholder is PNG
                 res.end(placeholderData);
             } catch (placeholderError) {
                 res.statusCode = 404;
