@@ -1,4 +1,4 @@
-console.log("Mr. Cat's server running on node.js"); //credits to chatgpt 4o for being the reason that this even works
+console.log("Mr. Cat's server running on node.js"); //thanks to chatgpt-4o/3.5 for making it work
 
 import { createServer } from 'node:http';
 import { readFile, access } from 'node:fs/promises';
@@ -8,18 +8,20 @@ import { extname } from 'node:path';
 const hostname = '192.168.178.30';
 const port = 80;
 
+const nodeJsVer = 'v20.15.0'; // Replace with your Node.js version
+
 const server = createServer(async (req, res) => {
     const url = req.url === '/' ? '/index.html' : req.url;
 
-    if (url === '/test.html') {
+    if (url === '/test.html' || url === '/script.js') {
         res.statusCode = 423;
         res.setHeader('Content-Type', 'text/plain');
-        res.end('423 Locked');
+        res.end(`423 Locked\nNode.js version: ${nodeJsVer}`);
         return;
     } else if (url.startsWith('/modern')) {
         res.statusCode = 503;
         res.setHeader('Content-Type', 'text/plain');
-        res.end('503 Service Unavailable');
+        res.end(`503 Service Unavailable\nNode.js version: ${nodeJsVer}`);
         return;
     }
 
@@ -59,7 +61,7 @@ const server = createServer(async (req, res) => {
         default:
             res.statusCode = 415;
             res.setHeader('Content-Type', 'text/plain');
-            res.end('415 Unsupported Media Type');
+            res.end(`415 Unsupported Media Type\nNode.js version: ${nodeJsVer}\n`);
             return;
     }
 
@@ -81,16 +83,16 @@ const server = createServer(async (req, res) => {
             } catch (placeholderError) {
                 res.statusCode = 404;
                 res.setHeader('Content-Type', 'text/plain');
-                res.end('404 Not Found');
+                res.end(`404 Not Found\nNode.js version: ${nodeJsVer}\n`);
             }
         } else {
             res.statusCode = 404;
             res.setHeader('Content-Type', 'text/plain');
-            res.end('404 Not Found');
+            res.end(`404 Not Found\nNode.js version: ${nodeJsVer}\n`);
         }
     }
 });
 
 server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+    console.log(`Server running at http://${hostname}:${port}/ under Node.js version: ${nodeJsVer}`);
 });

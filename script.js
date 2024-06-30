@@ -1,5 +1,6 @@
-console.log('henlo i am js tester 3000')
-var btn = document.createElement("button");
-btn.textContent = "Click Me!";
-btn.id = "myButton";
-document.body.appendChild(btn);
+document.addEventListener("DOMContentLoaded", function () {
+    const img = document.getElementById('profileImage');
+    img.onerror = function () {
+        img.src = img.alt;
+    };
+});
