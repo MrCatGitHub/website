@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     images.forEach(image => {
         const imageId = image.getAttribute('data-image-id');
-        const newImageSrc = `./img/${imageId}.png`;
+        const newImageSrc = `./img/${imageId}`;
 
         // Create a new image element to check if the image exists
         const img = new Image();
