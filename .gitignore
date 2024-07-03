@@ -2,3 +2,6 @@
 server.mjs
 server_old.mjs
 start.cmd
+start.cmd
+/.vs
+*.cmd
