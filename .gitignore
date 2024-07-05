@@ -5,3 +5,5 @@ start.cmd
 start.cmd
 /.vs
 *.cmd
+connections.log
+/node_modules

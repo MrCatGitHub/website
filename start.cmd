@@ -1,1 +1,1 @@
-node server_public.mjs
+node server.mjs
