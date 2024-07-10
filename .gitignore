@@ -7,3 +7,8 @@ start.cmd
 *.cmd
 connections.log
 /node_modules
+server.key
+server.cert
+hostname
+hs_ed25519_secret_key
+hs_ed25519_public_key

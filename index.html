@@ -1,14 +1,18 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
+<!--i need--><head>
     <title>Mr. Cats Website</title>
-    <link rel="icon" type="image/x-icon" href="/img/goober.ico">
+    <link rel="icon" type="image/x-icon" href="/img/goober.webp">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcxkgcqAAAAAMcrZfmzt1Y5H5ufGVZ_GDWDoJzw"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <div style="text-align: center;">
-        <font size="10"><b><u>Mr. Cats Website</h1></u></b></font>
+        <font size="10"><b><u>Mr. Cats Website</u></b></font>
     </div>
     This is a website i made from scratch :D<br>
     (aaand there is nothing to it)<br>
@@ -28,14 +32,22 @@
     <script src="script.js"></script>
     <hr>
     <font size="7"><b>My Projects:</b></font><br>
+    langtons ant in javaScript:<br>
+    <canvas id="langtonsAntCanvas" width="600" height="600"></canvas>
+    <script src="ant.js"></script><br>
+    some pictures:<br>
+    <img src="./img/scukfn.png" data-image-id="scukfn.png" width="1278" height="576" title="720p preview, use download button below for full res"><br>
+    <a href="./img/scukfn.png" download>
+        <button>Download</button>
+    </a>
 </body>
 <footer>
     <div id="donate">
         <p>Donate 5 CHF (<span id="donateAmount">Calculating...</span> XMR) to support this site by clicking the button below</p>
-        <a id="donateLink" href="#"><button id="donateButton">Donate</button></a>
+        <a id="donateLink" href="#"><button id="donateButton" onclick="changeButtonText()">Donate</button></a>
     </div>
     <p xmlns:cc="http://creativecommons.org/ns#">This website is licensed under <a href="https://creativecommons.org/licenses/by-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-ND 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1" alt=""></a></p>
-    Made by Mr Cat<!--And ChatGPT-4o/3.5-->.  All links <u>do not</u> have warranty so dont be an idiot.
+    Made by Mr Cat.  All links <u>do not</u> have warranty so dont be an idiot.
 </footer>
 <script src="donate.js"></script>
 </html>

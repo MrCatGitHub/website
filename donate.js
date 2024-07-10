@@ -25,4 +25,9 @@ function generateMoneroUrl(amount) {
     document.getElementById('donateLink').href = url;
 }
 
+function changeButtonText() {
+    document.getElementById('donateButton').textContent = "Thank you! :D"; //you are a fucking legend
+    console.log('you legend')
+}
+
 calculateMoneroAmount();
