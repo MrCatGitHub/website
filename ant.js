@@ -60,7 +60,7 @@ function update() {
 function startSimulation() {
     if (!running) {
         running = true;
-        intervalId = setInterval(update, 10);
+        intervalId = setInterval(update, 9);
     }
 }
 
@@ -105,6 +105,12 @@ function loadPreset(preset) {
         for (let y = 0; y < numCells; y++) {
             grid[0][y] = 1;
             grid[numCells - 1][y] = 1;
+        }
+    } else if (preset === 'horizontalStripes') {
+        for (let y = 0; y < numCells; y += 2) {
+            for (let x = 0; x < numCells; x++) {
+                grid[x][y] = 1;
+            }
         }
     }
     drawGrid();
