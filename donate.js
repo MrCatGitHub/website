@@ -26,7 +26,7 @@ function generateMoneroUrl(amount) {
 }
 
 function changeButtonText() {
-    document.getElementById('donateButton').textContent = "Thank you! :D"; //you are a fucking legend
+    document.getElementById('donateButton').textContent = "Thank you! :D";
     console.log('you legend')
 }
 
