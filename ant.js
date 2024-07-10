@@ -4,20 +4,26 @@ const canvasSize = 600;
 const cellSize = 5;
 const numCells = canvasSize / cellSize;
 
-const grid = Array(numCells).fill(null).map(() => Array(numCells).fill(0));
-
+let grid = Array(numCells).fill(null).map(() => Array(numCells).fill(0));
 let antX = Math.floor(numCells / 2);
 let antY = Math.floor(numCells / 2);
 let antDirection = 0;
+let running = false;
+let intervalId;
+
+canvas.addEventListener('click', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = Math.floor((event.clientX - rect.left) / cellSize);
+    const y = Math.floor((event.clientY - rect.top) / cellSize);
+    grid[x][y] = grid[x][y] === 0 ? 1 : 0;
+    drawGrid();
+    drawAnt();
+});
 
 function drawGrid() {
     for (let x = 0; x < numCells; x++) {
         for (let y = 0; y < numCells; y++) {
-            if (grid[x][y] === 1) {
-                ctx.fillStyle = 'black';
-            } else {
-                ctx.fillStyle = 'white';
-            }
+            ctx.fillStyle = grid[x][y] === 1 ? 'black' : 'white';
             ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
         }
     }
@@ -51,10 +57,59 @@ function update() {
     drawAnt();
 }
 
-function start() {
-    setInterval(update, 10);
+function startSimulation() {
+    if (!running) {
+        running = true;
+        intervalId = setInterval(update, 10);
+    }
+}
+
+function pauseSimulation() {
+    running = false;
+    clearInterval(intervalId);
+}
+
+function clearGrid() {
+    grid = Array(numCells).fill(null).map(() => Array(numCells).fill(0));
+    antX = Math.floor(numCells / 2);
+    antY = Math.floor(numCells / 2);
+    antDirection = 0;
+    drawGrid();
+    drawAnt();
+}
+
+function makeAllBlack() {
+    grid = Array(numCells).fill(null).map(() => Array(numCells).fill(1));
+    antX = Math.floor(numCells / 2);
+    antY = Math.floor(numCells / 2);
+    antDirection = 0;
+    drawGrid();
+    drawAnt();
+}
+
+function loadPreset(preset) {
+    clearGrid();
+    if (preset === 'checkerboard') {
+        for (let x = 0; x < numCells; x++) {
+            for (let y = 0; y < numCells; y++) {
+                if ((x + y) % 2 === 0) {
+                    grid[x][y] = 1;
+                }
+            }
+        }
+    } else if (preset === 'border') {
+        for (let x = 0; x < numCells; x++) {
+            grid[x][0] = 1;
+            grid[x][numCells - 1] = 1;
+        }
+        for (let y = 0; y < numCells; y++) {
+            grid[0][y] = 1;
+            grid[numCells - 1][y] = 1;
+        }
+    }
+    drawGrid();
+    drawAnt();
 }
 
 drawGrid();
 drawAnt();
-start();

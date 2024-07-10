@@ -1,12 +1,22 @@
-﻿<!DOCTYPE html>
+﻿�<!DOCTYPE html>
 <html lang="en">
-<!--i need--><head>
+<!--i need-->
+<head>
     <title>Mr. Cats Website</title>
     <link rel="icon" type="image/x-icon" href="/img/goober.webp">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         canvas {
             border: 1px solid black;
+            cursor: crosshair;
+        }
+
+        #controls {
+            margin-top: 10px;
+        }
+
+        button {
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -17,12 +27,9 @@
     This is a website i made from scratch :D<br>
     (aaand there is nothing to it)<br>
     <hr>
-    <b>Personality 'n' Shit:</b><br>
-    im gay<br>
-    im a guy<br>
     <b>Socials:</b><br>
     <button><a href="https://www.youtube.com/@MrCattt">YouTube channel</a></button><br>
-    <button><a href="mailto:vonroman65@gmail.com">Contact via email</a></button><br>
+    <b>Other schtick:</b><br />
     <button><a href="test.html">game i <b>didn't</b> make</a></button><br>
     <button><a href="modern/index.html">cleaner version made by chatgpt</a></button><br>
     <div style="display: flex; justify-content: flex-start;">
@@ -34,6 +41,14 @@
     <font size="7"><b>My Projects:</b></font><br>
     langtons ant in javaScript:<br>
     <canvas id="langtonsAntCanvas" width="600" height="600"></canvas>
+    <div id="controls">
+        <button onclick="startSimulation()">Start</button>
+        <button onclick="pauseSimulation()">Pause</button>
+        <button onclick="clearGrid()">Clear (White)</button>
+        <button onclick="makeAllBlack()">All Black</button>
+        <button onclick="loadPreset('checkerboard')">Checkerboard</button>
+        <button onclick="loadPreset('border')">Border</button>
+    </div>
     <script src="ant.js"></script><br>
     some pictures:<br>
     <img src="./img/scukfn.png" data-image-id="scukfn.png" width="1278" height="576" title="720p preview, use download button below for full res"><br>
