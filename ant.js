@@ -112,6 +112,12 @@ function loadPreset(preset) {
                 grid[x][y] = 1;
             }
         }
+    } else if (preset === 'verticalStripes') {
+        for (let x = 0; x < numCells; x += 2) {
+            for (let y = 0; y < numCells; y++) {
+                grid[x][y] = 1;
+            }
+        }
     }
     drawGrid();
     drawAnt();
